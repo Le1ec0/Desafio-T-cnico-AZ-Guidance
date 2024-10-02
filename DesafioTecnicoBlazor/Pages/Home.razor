@@ -11,41 +11,7 @@
     <button @onclick="CarregarCliente">Carregar Cliente</button>
 </div>
 
-@if (cliente != null)
-{
-    <EditForm Model="@cliente" OnValidSubmit="SalvarAlteracoes">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-
-        <div>
-            <label for="nomeCliente">ID do Cliente:</label>
-            <p>@cliente.ClienteID</p>
-        </div>
-
-        <div>
-            <label for="permitido">Permitido receber e-mails:</label>
-            <p>@(cliente.Permitido ? "Sim" : "Não")</p>
-        </div>
-
-        <div>
-            <label for="tipoEmailId">Tipo de Email:</label>
-            <p>@cliente.TipoEmailDescricao</p> <!-- Exibir descrição do tipo de email -->
-        </div>
-
-        <div>
-            <label for="enviarParaId">Enviar Para:</label>
-            <p>@cliente.EnviarParaDescricao</p> <!-- Exibir descrição de enviar para -->
-        </div>
-
-        <div>
-            <label for="formaEnvioRmId">Forma de Envio:</label>
-            <p>@cliente.FormaEnvioDescricao</p> <!-- Exibir descrição da forma de envio -->
-        </div>
-
-        <button type="submit">Salvar Alterações</button>
-    </EditForm>
-}
-else if (carregando)
+@if (carregando)
 {
     <p>Carregando dados do cliente...</p>
 }
@@ -53,12 +19,135 @@ else if (erro != null)
 {
     <p style="color:red">Erro: @erro</p>
 }
+else if (cliente != null)
+{
+    <EditForm Model="@cliente" OnValidSubmit="SalvarAlteracoes">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>
+            <label>ID do Cliente:</label>
+            <p>@cliente.ClienteID</p>
+        </div>
+
+        <div>
+            <label>Permitido enviar e-mails:</label>
+            <InputCheckbox @bind-Value="cliente.Permitido" />
+            <p>Descrição: @(cliente.Permitido ? "Sim" : "Não")</p>
+        </div>
+
+        <div>
+            <label>ID do Atual Tipo de E-mail:</label>
+            <p>@cliente.TipoEmailID</p>
+            <p>Descrição: @ObterTipoEmailDescricao(cliente.TipoEmailID)</p>
+            <label>Novo ID do Tipo de E-mail:</label>
+            <InputNumber @bind-Value="novoTipoEmailId" />
+            <p>Descrição: @ObterTipoEmailDescricao(novoTipoEmailId)</p>
+        </div>
+
+        <div>
+            <label>ID do Atual Tipo do Enviar Para:</label>
+            <p>@cliente.EnviarParaID</p>
+            <p>Descrição: @ObterEnviarParaDescricao(cliente.EnviarParaID)</p>
+            <label>Novo ID do Enviar Para:</label>
+            <InputNumber @bind-Value="novoEnviarParaId" />
+            <p>Descrição: @ObterEnviarParaDescricao(novoEnviarParaId)</p>
+        </div>
+
+        <div>
+            <label>ID do Atual Tipo da Forma de Envio:</label>
+            <p>@cliente.FormaEnvioRmID</p>
+            <p>Descrição: @ObterFormaEnvioDescricao(cliente.FormaEnvioRmID)</p>
+            <label>Novo ID do Tipo da Forma de Envio:</label>
+            <InputNumber @bind-Value="novoFormaEnvioId" />
+            <p>Descrição: @ObterFormaEnvioDescricao(novoFormaEnvioId)</p>
+        </div>
+
+        <button type="submit">Salvar Alterações</button>
+    </EditForm>
+
+    <h4>Descrição dos Campos:</h4>
+    <h5>Tipo de E-mail:</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Comunicação de Movimentos</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Rebalanceamento da Carteira</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Mensagem de Feliz Aniversário</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>Tipo do Enviar Para:</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Cliente</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Consultor</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Ambos</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>Tipo da Forma de Envio:</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Destinatario</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Copia</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Copia Oculta</td>
+            </tr>
+        </tbody>
+    </table>
+}
 
 @code {
     private string clienteId;
     private PermissaoCliente cliente;
     private bool carregando = false;
     private string erro;
+    private int novoTipoEmailId;
+    private int novoEnviarParaId;
+    private int novoFormaEnvioId;
 
     private async Task CarregarCliente()
     {
@@ -67,11 +156,17 @@ else if (erro != null)
             carregando = true;
             erro = null;
 
-            // Converte o ID para um número inteiro
             if (int.TryParse(clienteId, out int id))
             {
                 cliente = await permissaoClienteService.GetClienteById(id);
-                if (cliente == null)
+                if (cliente != null)
+                {
+                    // Limpa os novos IDs ao carregar o cliente
+                    novoTipoEmailId = cliente.TipoEmailID;
+                    novoEnviarParaId = cliente.EnviarParaID;
+                    novoFormaEnvioId = cliente.FormaEnvioRmID;
+                }
+                else
                 {
                     erro = "Cliente não encontrado.";
                 }
@@ -97,14 +192,15 @@ else if (erro != null)
         {
             erro = null;
             var clienteAtualizado = new PermissaoCliente
-                {
-                    ClienteID = cliente.ClienteID,
-                    Permitido = cliente.Permitido,
-                    TipoEmailID = cliente.TipoEmailID,
-                    EnviarParaID = cliente.EnviarParaID,
-                    FormaEnvioRmID = cliente.FormaEnvioRmID
-                };
+            {
+                ClienteID = cliente.ClienteID,
+                Permitido = cliente.Permitido,
+                TipoEmailID = novoTipoEmailId,
+                EnviarParaID = novoEnviarParaId,
+                FormaEnvioRmID = novoFormaEnvioId
+            };
             await permissaoClienteService.UpdateCliente(clienteAtualizado);
+            // Aqui você pode exibir uma mensagem de sucesso, se desejar
         }
         catch (Exception ex)
         {
@@ -112,4 +208,37 @@ else if (erro != null)
         }
     }
 
+    // Métodos para obter descrições
+    private string ObterTipoEmailDescricao(int tipoEmailId)
+    {
+        return tipoEmailId switch
+        {
+            1 => "Comunicação de Movimentos",
+            2 => "Rebalanceamento da Carteira",
+            3 => "Mensagem de Feliz Aniversário",
+            _ => "Descrição não encontrada"
+        };
+    }
+
+    private string ObterEnviarParaDescricao(int enviarParaId)
+    {
+        return enviarParaId switch
+        {
+            1 => "Cliente",
+            2 => "Consultor",
+            3 => "Ambos",
+            _ => "Descrição não encontrada"
+        };
+    }
+
+    private string ObterFormaEnvioDescricao(int formaEnvioId)
+    {
+        return formaEnvioId switch
+        {
+            1 => "Destinatario",
+            2 => "Copia",
+            3 => "Copia Oculta",
+            _ => "Descrição não encontrada"
+        };
+    }
 }
