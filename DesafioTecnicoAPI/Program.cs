@@ -3,10 +3,10 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container
+// Adicionar serviços ao contêiner
 builder.Services.AddEndpointsApiExplorer();
 
-// Configure Swagger
+// Configurar Swagger
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -26,32 +26,35 @@ builder.Services.AddCors(options =>
                          .AllowAnyHeader());
 });
 
-// Configure the database connection (SQL Server)
+// Configurar a conexão com o banco de dados (SQL Server)
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Register the PermissaoClienteService
+// Registrar o PermissaoClienteService
 builder.Services.AddScoped<PermissaoClienteService>();
 
 var app = builder.Build();
 
-// Enable Swagger middleware for development only
+// Usar a política CORS
+app.UseCors("AllowAllOrigins"); // Adicione esta linha
+
+// Habilitar Swagger middleware apenas no ambiente de desenvolvimento
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "PermissaoCliente API V1");
-        c.RoutePrefix = string.Empty; // Swagger will be at the root URL
+        c.RoutePrefix = string.Empty; // Swagger estará na URL raiz
     });
 }
 
-// Aplicar CORS
-app.UseCors("AllowAllOrigins");
-
 app.UseHttpsRedirection();
+app.UseRouting();
 
-// Endpoint to get client permission by ID
+app.UseAuthorization();
+
+// Endpoint para obter informações de um cliente pelo ID.
 app.MapGet("/api/permissao_cliente/{id}", async (int id, PermissaoClienteService service) =>
 {
     var cliente = await service.GetClienteById(id);
@@ -64,7 +67,7 @@ app.MapGet("/api/permissao_cliente/{id}", async (int id, PermissaoClienteService
 .WithName("GetPermissaoCliente")
 .WithOpenApi();
 
-// Endpoint to update client permission
+// Endpoint para atualizar informações de um cliente.
 app.MapPut("/api/permissao_cliente/{id}", async (int id, PermissaoCliente permissaoCliente, PermissaoClienteService service) =>
 {
     if (id != permissaoCliente.ClienteID)
