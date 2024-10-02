@@ -1,3 +1,4 @@
+using DesafioTecnicoAZGuidance.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -62,12 +63,14 @@ app.UseAuthorization();
 // Endpoint para obter informações de um cliente pelo ID.
 app.MapGet("/api/permissao_cliente/{id}", async (int id, PermissaoClienteService service) =>
 {
-    var cliente = await service.GetClienteById(id);
-    if (cliente == null)
+    var clienteDto = await service.GetClienteById(id);
+
+    if (clienteDto == null)
     {
         return Results.NotFound($"Cliente com ID {id} não encontrado.");
     }
-    return Results.Ok(cliente);
+
+    return Results.Ok(clienteDto); // Retorna o DTO, não o modelo original
 })
 .WithName("GetPermissaoCliente")
 .WithOpenApi();
@@ -80,6 +83,7 @@ app.MapPut("/api/permissao_cliente/{id}", async (int id, PermissaoCliente permis
         return Results.BadRequest("ID do cliente não corresponde ao enviado.");
     }
 
+    // Atualize as informações do cliente aqui, se necessário
     var updated = await service.UpdateCliente(permissaoCliente);
     if (!updated)
     {
