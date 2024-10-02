@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using DesafioTecnicoAZGuidance;
-using DesafioTecnicoAZGuidance.Services; // Adicione a referência ao namespace do serviço
+using DesafioTecnicoBlazor;
+using DesafioTecnicoBlazor.Services; // Adicione a referência ao namespace do serviço
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
