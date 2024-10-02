@@ -1,13 +1,19 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Adicionar serviços ao contêiner.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Configurar conexão com o banco de dados (SQL Server)
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Registrar o serviço PermissaoClienteService
+builder.Services.AddScoped<PermissaoClienteService>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar o pipeline de requisição HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -16,29 +22,36 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+// Endpoint para obter informações de um cliente pelo ID.
+app.MapGet("/api/permissao_cliente/{id}", async (int id, PermissaoClienteService service) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    var cliente = await service.GetClienteById(id);
+    if (cliente == null)
+    {
+        return Results.NotFound($"Cliente com ID {id} não encontrado.");
+    }
+    return Results.Ok(cliente);
 })
-.WithName("GetWeatherForecast")
+.WithName("GetPermissaoCliente")
+.WithOpenApi();
+
+// Endpoint para atualizar informações de um cliente.
+app.MapPut("/api/permissao_cliente/{id}", async (int id, PermissaoCliente permissaoCliente, PermissaoClienteService service) =>
+{
+    if (id != permissaoCliente.ClienteID)
+    {
+        return Results.BadRequest("ID do cliente não corresponde ao enviado.");
+    }
+
+    var updated = await service.UpdateCliente(permissaoCliente);
+    if (!updated)
+    {
+        return Results.NotFound($"Cliente com ID {id} não encontrado.");
+    }
+
+    return Results.NoContent();
+})
+.WithName("UpdatePermissaoCliente")
 .WithOpenApi();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

@@ -32,3 +32,5 @@ D:\Visual\AZ Guidance\Desafio Técnico AZ Guidance\DesafioTecnicoAPI\obj\Debug\n
 D:\Visual\AZ Guidance\Desafio Técnico AZ Guidance\DesafioTecnicoAPI\obj\Debug\net8.0\DesafioTecnicoAPI.pdb
 D:\Visual\AZ Guidance\Desafio Técnico AZ Guidance\DesafioTecnicoAPI\obj\Debug\net8.0\DesafioTecnicoAPI.genruntimeconfig.cache
 D:\Visual\AZ Guidance\Desafio Técnico AZ Guidance\DesafioTecnicoAPI\obj\Debug\net8.0\ref\DesafioTecnicoAPI.dll
+D:\Visual\AZ Guidance\Desafio Técnico AZ Guidance\DesafioTecnicoAPI\obj\Debug\net8.0\DesafioTecnicoAPI.RazorAssemblyInfo.cache
+D:\Visual\AZ Guidance\Desafio Técnico AZ Guidance\DesafioTecnicoAPI\obj\Debug\net8.0\DesafioTecnicoAPI.RazorAssemblyInfo.cs
