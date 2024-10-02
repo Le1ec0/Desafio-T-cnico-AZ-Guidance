@@ -7,51 +7,56 @@
 
 <div>
     <label for="clienteId">Cliente ID:</label>
-    <InputNumber id="clienteId" @bind-Value="clienteId" />
+    <InputText id="clienteId" @bind-Value="clienteId" />
     <button @onclick="CarregarCliente">Carregar Cliente</button>
 </div>
 
 @if (cliente != null)
 {
-    <EditForm Model="@cliente" OnValidSubmit="SalvarAlteracoes">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+        <EditForm Model="@cliente" OnValidSubmit="SalvarAlteracoes">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-        <div>
-            <label for="permitido">Permitido:</label>
-            <InputCheckbox id="permitido" @bind-Value="cliente.Permitido" />
-        </div>
+            <div>
+                <label for="nomeCliente">Nome do Cliente:</label>
+                <p>@cliente.ClienteID</p> <!-- Exibir o ID do Cliente -->
+            </div>
 
-        <div>
-            <label for="tipoEmailId">Tipo de Email:</label>
-            <InputNumber id="tipoEmailId" @bind-Value="cliente.TipoEmailID" />
-        </div>
+            <div>
+                <label for="permitido">Permitido:</label>
+                <InputCheckbox id="permitido" @bind-Value="cliente.Permitido" />
+            </div>
 
-        <div>
-            <label for="enviarParaId">Enviar Para:</label>
-            <InputNumber id="enviarParaId" @bind-Value="cliente.EnviarParaID" />
-        </div>
+            <div>
+                <label for="tipoEmailId">Tipo de Email:</label>
+                <p>@cliente.TipoEmailDescricao</p> <!-- Exibir descrição -->
+            </div>
 
-        <div>
-            <label for="formaEnvioRmId">Forma de Envio:</label>
-            <InputNumber id="formaEnvioRmId" @bind-Value="cliente.FormaEnvioRmID" />
-        </div>
+            <div>
+                <label for="enviarParaId">Enviar Para:</label>
+                <p>@cliente.EnviarParaDescricao</p> <!-- Exibir descrição -->
+            </div>
 
-        <button type="submit">Salvar Alterações</button>
-    </EditForm>
+            <div>
+                <label for="formaEnvioRmId">Forma de Envio:</label>
+                <p>@cliente.FormaEnvioDescricao</p> <!-- Exibir descrição -->
+            </div>
+
+            <button type="submit">Salvar Alterações</button>
+        </EditForm>
 }
 else if (carregando)
 {
-    <p>Carregando dados do cliente...</p>
+        <p>Carregando dados do cliente...</p>
 }
 else if (erro != null)
 {
-    <p style="color:red">Erro: @erro</p>
+        <p style="color:red">Erro: @erro</p>
 }
 
 @code {
-    private int clienteId;
-    private PermissaoCliente cliente;
+    private string clienteId; // Altere para string para permitir entrada de texto
+    private ClienteDto cliente; // Altere para ClienteDto
     private bool carregando = false;
     private string erro;
 
@@ -61,7 +66,16 @@ else if (erro != null)
         {
             carregando = true;
             erro = null;
-            cliente = await permissaoClienteService.GetClienteById(clienteId);
+
+            // Tente converter o ID para um número inteiro
+            if (int.TryParse(clienteId, out int id))
+            {
+                cliente = await permissaoClienteService.GetClienteById(id);
+            }
+            else
+            {
+                erro = "ID do cliente inválido. Insira um número.";
+            }
         }
         catch (Exception ex)
         {
@@ -78,7 +92,15 @@ else if (erro != null)
         try
         {
             erro = null;
-            await permissaoClienteService.UpdateCliente(cliente);
+            var clienteAtualizado = new PermissaoCliente
+                {
+                    ClienteID = cliente.ClienteID,
+                    Permitido = cliente.Permitido == "Sim", // Converter de string para bool
+                    TipoEmailID = cliente.TipoEmailID,
+                    EnviarParaID = cliente.EnviarParaID,
+                    FormaEnvioRmID = cliente.FormaEnvioRmID
+                };
+            await permissaoClienteService.UpdateCliente(clienteAtualizado);
             // Aqui você pode mostrar uma mensagem de sucesso ou fazer outra ação após salvar
         }
         catch (Exception ex)
