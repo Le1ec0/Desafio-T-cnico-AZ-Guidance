@@ -1,16 +1,10 @@
 # Desafio Técnico AZ Guidance
 
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/iuricode/README-template?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
-
 Diagrama do Banco de dados:
 
 <img src="diagrama.png" alt="Diagrama do Banco de dados">
 
-> O projeto tem como foco estruturar um banco de dados, a partir do modelo relacional. Após isso deve-se apresentar os dados populados disponíveis para a busca a partir do ID do usuário. Então, se necessário deve ser possível alterar tais dados.
+> O projeto teve como foco estruturar um banco de dados relacional para consulta de clientes e alteração de seus status de envio de e-mail. Após isso deve-se apresentar os dados populados disponíveis para a busca a partir do ID do usuário. Então, se necessário deve ser possível alterar tais dados.
 
 ### Ajustes e melhorias
 
@@ -41,7 +35,7 @@ Execute os Scripts do SQL como informado no arquivo ScriptsSQL.sql. Assim o banc
 
 ## ☕ Usando <Desafio Técnico AZ Guidance>
 
-Para usar <Desafio Técnico AZ Guidance>, siga estas etapas:
+Para executar o projeto <Desafio Técnico AZ Guidance>, siga estas etapas:
 
 Para executar a API navegue para a pasta "DesafioTecnicoAPI" e execute os comandos:
 
@@ -72,7 +66,7 @@ e em seguida
 
 Para contribuir com <Desafio Técnico AZ Guidance>, siga estas etapas:
 
-1. Bifurque este repositório.
+1. Faça um fork este repositório.
 2. Crie um branch: `git checkout -b <nome_branch>`.
 3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
 4. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
@@ -98,6 +92,8 @@ Para mais contato:
     </td>
   </tr>
 </table>
+
+Saudações à equipe AZ Guidance que me guiou até aqui.
 
 ## 😄 Seja um dos contribuidores
 
