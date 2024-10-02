@@ -6,23 +6,23 @@ using DesafioTecnicoAZGuidance.Models;
 namespace DesafioTecnicoAZGuidance.Services
 {
     public class PermissaoClienteService
-{
-    private readonly HttpClient _httpClient;
-
-    public PermissaoClienteService(HttpClient httpClient)
     {
-        _httpClient = httpClient;
-    }
+        private readonly HttpClient _httpClient;
 
-    public async Task<PermissaoCliente> GetClienteById(int clienteId)
-    {
-        return await _httpClient.GetFromJsonAsync<PermissaoCliente>($"api/permissaoCliente/{clienteId}");
-    }
+        public PermissaoClienteService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
 
-    public async Task UpdateCliente(PermissaoCliente cliente)
-    {
-        await _httpClient.PutAsJsonAsync($"api/permissaoCliente/{cliente.ClienteID}", cliente);
+        public async Task<PermissaoCliente> GetClienteById(int clienteId)
+        {
+            return await _httpClient.GetFromJsonAsync<PermissaoCliente>($"api/permissao_Cliente/{clienteId}");
+        }
+
+        public async Task UpdateCliente(PermissaoCliente cliente)
+        {
+            await _httpClient.PutAsJsonAsync($"api/permissao_Cliente/{cliente.ClienteID}", cliente);
+        }
     }
-}
 
 }
