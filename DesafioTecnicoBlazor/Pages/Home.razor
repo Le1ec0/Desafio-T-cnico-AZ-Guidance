@@ -18,28 +18,28 @@
         <ValidationSummary />
 
         <div>
-            <label for="nomeCliente">Nome do Cliente:</label>
-            <p>@cliente.ClienteID</p> <!-- Exibir o ID do Cliente -->
+            <label for="nomeCliente">ID do Cliente:</label>
+            <p>@cliente.ClienteID</p>
         </div>
 
         <div>
-            <label for="permitido">Permitido:</label>
-            <InputCheckbox id="permitido" @bind-Value="cliente.Permitido" />
+            <label for="permitido">Permitido receber e-mails:</label>
+            <p>@(cliente.Permitido ? "Sim" : "Não")</p>
         </div>
 
         <div>
             <label for="tipoEmailId">Tipo de Email:</label>
-            <p>@cliente.TipoEmailID</p> <!-- Exibir ID do tipo de email -->
+            <p>@cliente.TipoEmailDescricao</p> <!-- Exibir descrição do tipo de email -->
         </div>
 
         <div>
             <label for="enviarParaId">Enviar Para:</label>
-            <p>@cliente.EnviarParaID</p> <!-- Exibir ID de enviar para -->
+            <p>@cliente.EnviarParaDescricao</p> <!-- Exibir descrição de enviar para -->
         </div>
 
         <div>
             <label for="formaEnvioRmId">Forma de Envio:</label>
-            <p>@cliente.FormaEnvioRmID</p> <!-- Exibir ID de forma de envio -->
+            <p>@cliente.FormaEnvioDescricao</p> <!-- Exibir descrição da forma de envio -->
         </div>
 
         <button type="submit">Salvar Alterações</button>

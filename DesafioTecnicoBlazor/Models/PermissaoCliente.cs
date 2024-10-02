@@ -14,8 +14,14 @@ namespace DesafioTecnicoBlazor.Models
         public int TipoEmailID { get; set; }
         public int EnviarParaID { get; set; }
         public int FormaEnvioRmID { get; set; }
+
+        // Propriedades adicionais para as descrições
+        public string TipoEmailDescricao { get; set; }
+        public string EnviarParaDescricao { get; set; }
+        public string FormaEnvioDescricao { get; set; }
     }
 
+    // Conversor personalizado para o tipo booleano
     public class BooleanStringConverter : JsonConverter<bool>
     {
         public override bool Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
