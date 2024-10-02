@@ -17,6 +17,15 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// Habilitar CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder => builder.AllowAnyOrigin()
+                         .AllowAnyMethod()
+                         .AllowAnyHeader());
+});
+
 // Configure the database connection (SQL Server)
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -36,6 +45,9 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty; // Swagger will be at the root URL
     });
 }
+
+// Aplicar CORS
+app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();
 
