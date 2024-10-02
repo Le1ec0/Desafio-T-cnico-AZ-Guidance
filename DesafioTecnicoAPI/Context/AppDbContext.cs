@@ -18,14 +18,14 @@ public class AppDbContext : DbContext
 
         // Mapeia a entidade PermissaoTipo para a tabela Permissão_Tipo
         modelBuilder.Entity<PermissaoTipo>()
-            .ToTable("Permissão_Tipo");
+            .ToTable("Permissao_Tipo");
 
         // Mapeia a entidade PermissaoEnviarPara para a tabela Permissão_Enviar_Para
         modelBuilder.Entity<PermissaoEnviarPara>()
-            .ToTable("Permissão_Enviar_Para");
+            .ToTable("Permissao_Enviar_Para");
 
         // Mapeia a entidade PermissaoFormaEnvio para a tabela Permissão_Forma_Envio
         modelBuilder.Entity<PermissaoFormaEnvio>()
-            .ToTable("Permissão_Forma_Envio");
+            .ToTable("Permissao_Forma_Envio");
     }
 }
