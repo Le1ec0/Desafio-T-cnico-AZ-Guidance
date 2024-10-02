@@ -1,7 +1,89 @@
 ﻿@page "/"
+@using DesafioTecnicoAZGuidance.Services // Certifique-se de que o namespace correto está aqui
+@using DesafioTecnicoAZGuidance.Models // Certifique-se de que o namespace correto está aqui
+@inject PermissaoClienteService permissaoClienteService
 
-<PageTitle>Home</PageTitle>
+<h3>Editar Permissões do Cliente</h3>
 
-<h1>Hello, world!</h1>
+<div>
+    <label for="clienteId">Cliente ID:</label>
+    <InputNumber id="clienteId" @bind-Value="clienteId" />
+    <button @onclick="CarregarCliente">Carregar Cliente</button>
+</div>
 
-Welcome to your new app.
+@if (cliente != null)
+{
+    <EditForm Model="@cliente" OnValidSubmit="SalvarAlteracoes">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>
+            <label for="permitido">Permitido:</label>
+            <InputCheckbox id="permitido" @bind-Value="cliente.Permitido" />
+        </div>
+
+        <div>
+            <label for="tipoEmailId">Tipo de Email:</label>
+            <InputNumber id="tipoEmailId" @bind-Value="cliente.TipoEmailID" />
+        </div>
+
+        <div>
+            <label for="enviarParaId">Enviar Para:</label>
+            <InputNumber id="enviarParaId" @bind-Value="cliente.EnviarParaID" />
+        </div>
+
+        <div>
+            <label for="formaEnvioRmId">Forma de Envio:</label>
+            <InputNumber id="formaEnvioRmId" @bind-Value="cliente.FormaEnvioRmID" />
+        </div>
+
+        <button type="submit">Salvar Alterações</button>
+    </EditForm>
+}
+else if (carregando)
+{
+    <p>Carregando dados do cliente...</p>
+}
+else if (erro != null)
+{
+    <p style="color:red">Erro: @erro</p>
+}
+
+@code {
+    private int clienteId;
+    private PermissaoCliente cliente;
+    private bool carregando = false;
+    private string erro;
+
+    private async Task CarregarCliente()
+    {
+        try
+        {
+            carregando = true;
+            erro = null;
+            cliente = await permissaoClienteService.GetClienteById(clienteId);
+        }
+        catch (Exception ex)
+        {
+            erro = "Falha ao carregar dados do cliente. " + ex.Message;
+        }
+        finally
+        {
+            carregando = false;
+        }
+    }
+
+    private async Task SalvarAlteracoes()
+    {
+        try
+        {
+            erro = null;
+            await permissaoClienteService.UpdateCliente(cliente);
+            // Aqui você pode mostrar uma mensagem de sucesso ou fazer outra ação após salvar
+        }
+        catch (Exception ex)
+        {
+            erro = "Falha ao salvar alterações. " + ex.Message;
+        }
+    }
+}
