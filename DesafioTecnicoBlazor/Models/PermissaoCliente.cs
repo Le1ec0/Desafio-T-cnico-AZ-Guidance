@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace DesafioTecnicoBlazor.Models
@@ -6,19 +7,31 @@ namespace DesafioTecnicoBlazor.Models
     {
         public int ClienteID { get; set; }
 
-        // Propriedade para o valor booleano
-        public bool Permitido { get; set; }
-
-        // Propriedade para o valor que vem do JSON
         [JsonPropertyName("permitido")]
-        public string PermitidoString
-        {
-            get => Permitido ? "Sim" : "Não";
-            set => Permitido = value == "Sim";
-        }
+        [JsonConverter(typeof(BooleanStringConverter))] // Use o conversor personalizado
+        public bool Permitido { get; set; }
 
         public int TipoEmailID { get; set; }
         public int EnviarParaID { get; set; }
         public int FormaEnvioRmID { get; set; }
+    }
+
+    public class BooleanStringConverter : JsonConverter<bool>
+    {
+        public override bool Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            string value = reader.GetString();
+            return value switch
+            {
+                "Sim" => true,
+                "Não" => false,
+                _ => throw new JsonException($"Valor inesperado para conversão em booleano: {value}")
+            };
+        }
+
+        public override void Write(Utf8JsonWriter writer, bool value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value ? "Sim" : "Não");
+        }
     }
 }
