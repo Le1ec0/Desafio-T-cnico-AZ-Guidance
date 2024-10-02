@@ -8,7 +8,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 // Registre o HttpClient para ser utilizado pelos serviços
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5001/") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5194/") });
 
 // Registre o serviço PermissaoClienteService
 builder.Services.AddScoped<PermissaoClienteService>();
