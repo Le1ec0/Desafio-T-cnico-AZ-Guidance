@@ -1,3 +1,5 @@
 .vscode/*
-.bin/*
-.obj/*
+DesafioTecnicoBlazor/bin/
+DesafioTecnicoAPI/bin/
+DesafioTecnicoBlazor/obj/
+DesafioTecnicoAPI/obj/
