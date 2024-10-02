@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "DesafioTecnicoBlazor",
   "resources": {
-    "hash": "sha256-pJWAtMoZAKx7odpA92rUjv1suyy1G7xh1eY5KXXNrNg=",
+    "hash": "sha256-RT+fZER3VUXgAYNT0Vq4zntc2IvdkouoR0l2r/JC54U=",
     "jsModuleNative": {
       "dotnet.native.8.0.8.pj9srbodc5.js": "sha256-juC5sA7gHTLXFEhAKgdM2/RavswpwCtDfjYGsAz2FXg="
     },
@@ -208,10 +208,10 @@
       "mscorlib.wasm": "sha256-Gz8PyW2/fwihe5ul81OwmRUrU71r+KtbyRw6xlOGD+Q=",
       "netstandard.wasm": "sha256-jMTqIQzoDS810lyhZpMO5eEC36EzntXqSVn+2qwkOMQ=",
       "System.Private.CoreLib.wasm": "sha256-NFj5WE5VLP2LptZIRJCUIc1AMk06FmxpsSILfPISwAw=",
-      "DesafioTecnicoBlazor.wasm": "sha256-1Kgl4KFzj3j+yIQLOoO82X7zVLRsPFm37Ci7TOwrhjA="
+      "DesafioTecnicoBlazor.wasm": "sha256-aNulSi1cPVsxbe5WtxMVBoDYc5O9Tp38skdzQWOCUIY="
     },
     "pdb": {
-      "DesafioTecnicoBlazor.pdb": "sha256-HJOmJd/1Y1RZki/uO5gaZ8ovg0F85MzNyuQvdd4Zq/o="
+      "DesafioTecnicoBlazor.pdb": "sha256-Lp/fM+nDYL3I3fsUXwEcQu9ySmpDLIrd1LUI7MG6jiE="
     }
   },
   "cacheBootResources": true,
