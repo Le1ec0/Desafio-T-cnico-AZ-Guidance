@@ -1,4 +1,4 @@
-# Nome do projeto
+# Desafio Técnico AZ Guidance
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
@@ -6,57 +6,72 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
 
-<img src="imagem.png" alt="Exemplo imagem">
+Diagrama do Banco de dados:
+<img src="diagrama.png" alt="Diagrama do Banco de dados">
 
-> Linha adicional de texto informativo sobre o que o projeto faz. Sua introdução deve ter cerca de 2 ou 3 linhas. Não exagere, as pessoas não vão ler.
+> O projeto tem como foco estruturar um banco de dados, a partir do modelo relacional. Após isso deve-se apresentar os dados populados disponíveis para a busca a partir do ID do usuário. Então, se necessário deve ser possível alterar tais dados.
 
 ### Ajustes e melhorias
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas para as seguintes tarefas:
 
-- [x] Tarefa 1
-- [x] Tarefa 2
-- [x] Tarefa 3
-- [ ] Tarefa 4
-- [ ] Tarefa 5
+- [x] Banco de dados relacional - Concluído
+- [x] API - Concluído
+- [x] Blazor pages - Concluído
+- [ ] Melhorar o Layout das telas
+- [ ] Aprimorar a segurança dos dados
 
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
-- Você instalou a versão mais recente de `<linguagem / dependência / requeridos>`
-- Você tem uma máquina `<Windows / Linux / Mac>`. Indique qual sistema operacional é compatível / não compatível.
-- Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
+- Você instalou a versão mais recente de `<.Net SDK / C# e Blazor / SQL Server>`
+- Você tem uma máquina `<Windows>`.
 
 ## 🚀 Instalando <nome_do_projeto>
 
-Para instalar o <nome_do_projeto>, siga estas etapas:
+Para executar o <Desafio Técnico AZ Guidance>, siga estas etapas:
 
-Linux e macOS:
-
-```
-<comando_de_instalação>
 ```
 
 Windows:
 
+Instale o SDK .Net e o SQL Server.
+
+Execute os Scripts do SQL como informado no arquivo ScriptsSQL.sql. Assim o banco será populado com sucesso.
+
+
+## ☕ Usando <Desafio Técnico AZ Guidance>
+
+Para usar <Desafio Técnico AZ Guidance>, siga estas etapas:
+
+Para executar a API navegue para a pasta "DesafioTecnicoAPI" e execute os comandos:
+
 ```
-<comando_de_instalação>
+
+<dotnet restore>
 ```
-
-## ☕ Usando <nome_do_projeto>
-
-Para usar <nome_do_projeto>, siga estas etapas:
+e em seguida
 
 ```
-<exemplo_de_uso>
+<dotnet run>
 ```
 
-Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Forneça uma referência de opções para pontos de bônus!
+Para executar o Blazor navegue para a pasta "DesafioTecnicoBlazor" e execute os comandos:
 
-## 📫 Contribuindo para <nome_do_projeto>
+```
+<dotnet restore>
+```
 
-Para contribuir com <nome_do_projeto>, siga estas etapas:
+e em seguida
+
+```
+<dotnet run>
+```
+
+## 📫 Contribuindo para o <Desafio Técnico AZ Guidance>
+
+Para contribuir com <Desafio Técnico AZ Guidance>, siga estas etapas:
 
 1. Bifurque este repositório.
 2. Crie um branch: `git checkout -b <nome_branch>`.
@@ -68,31 +83,17 @@ Como alternativa, consulte a documentação do GitHub em [como criar uma solicit
 
 ## 🤝 Colaboradores
 
-Agradecemos às seguintes pessoas que contribuíram para este projeto:
+Primeiramente agradeço a oportunidade de fazer parte desse processo seletivo. Essa foi uma ótima oportunidade de colocar meus conhecimentos em prática.
+
+Para mais contato:
 
 <table>
   <tr>
     <td align="center">
-      <a href="#" title="defina o título do link">
-        <img src="https://avatars3.githubusercontent.com/u/31936044" width="100px;" alt="Foto do Iuri Silva no GitHub"/><br>
+      <a href="#" title="[Leandro I. S.](https://www.linkedin.com/in/leandro-izidoro-a5143471/)">
+        <img src="https://media.licdn.com/dms/image/v2/C4D03AQGOAPucBMaiIw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1643297539246?e=1733356800&v=beta&t=Gh_j5J2M9VR7eL0p1Lu9Bkf2zm0AB0bEd3OkTcCSDpU" width="100px;" alt="Leandro I. S."/><br>
         <sub>
-          <b>Iuri Silva</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#" title="defina o título do link">
-        <img src="https://s2.glbimg.com/FUcw2usZfSTL6yCCGj3L3v3SpJ8=/smart/e.glbimg.com/og/ed/f/original/2019/04/25/zuckerberg_podcast.jpg" width="100px;" alt="Foto do Mark Zuckerberg"/><br>
-        <sub>
-          <b>Mark Zuckerberg</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#" title="defina o título do link">
-        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do Steve Jobs"/><br>
-        <sub>
-          <b>Steve Jobs</b>
+          <b>Leandro I. S.</b>
         </sub>
       </a>
     </td>
@@ -101,8 +102,6 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
 ## 😄 Seja um dos contribuidores
 
-Quer fazer parte desse projeto? Clique [AQUI](CONTRIBUTING.md) e leia como contribuir.
+## 📝 Créditos
 
-## 📝 Licença
-
-Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
+Todos os créditos estão reservados à AZ Guidance.
