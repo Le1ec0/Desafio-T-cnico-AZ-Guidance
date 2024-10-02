@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\obj\\Debug\\net8.0\\compressed\\gcfj4nseqo.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\DesafioTecnicoBlazor.styles.css",
+      "PackagePath": "staticwebassets\\DesafioTecnicoBlazor.styles.css"
+    },
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\Visual\\AZ Guidance\\Desafio Técnico AZ Guidance\\DesafioTecnicoBlazor\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.DesafioTecnicoBlazor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.DesafioTecnicoBlazor.props",
+      "PackagePath": "build\\DesafioTecnicoBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.DesafioTecnicoBlazor.props",
+      "PackagePath": "buildMultiTargeting\\DesafioTecnicoBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.DesafioTecnicoBlazor.props",
+      "PackagePath": "buildTransitive\\DesafioTecnicoBlazor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
