@@ -33,10 +33,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Registrar o PermissaoClienteService
 builder.Services.AddScoped<PermissaoClienteService>();
 
+// Adicionar serviço de autorização
+builder.Services.AddAuthorization(); // Adicione esta linha
+
 var app = builder.Build();
 
 // Usar a política CORS
-app.UseCors("AllowAllOrigins"); // Adicione esta linha
+app.UseCors("AllowAllOrigins");
 
 // Habilitar Swagger middleware apenas no ambiente de desenvolvimento
 if (app.Environment.IsDevelopment())
@@ -49,10 +52,12 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseRouting();
 
+// Adicionar middleware de autorização
 app.UseAuthorization();
+
 
 // Endpoint para obter informações de um cliente pelo ID.
 app.MapGet("/api/permissao_cliente/{id}", async (int id, PermissaoClienteService service) =>
