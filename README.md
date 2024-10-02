@@ -7,6 +7,7 @@
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
 
 Diagrama do Banco de dados:
+
 <img src="diagrama.png" alt="Diagrama do Banco de dados">
 
 > O projeto tem como foco estruturar um banco de dados, a partir do modelo relacional. Após isso deve-se apresentar os dados populados disponíveis para a busca a partir do ID do usuário. Então, se necessário deve ser possível alterar tais dados.
@@ -28,18 +29,15 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 - Você instalou a versão mais recente de `<.Net SDK / C# e Blazor / SQL Server>`
 - Você tem uma máquina `<Windows>`.
 
-## 🚀 Instalando <nome_do_projeto>
+## 🚀 Instalando <Desafio Técnico AZ Guidance>
 
 Para executar o <Desafio Técnico AZ Guidance>, siga estas etapas:
-
-```
 
 Windows:
 
 Instale o SDK .Net e o SQL Server.
 
 Execute os Scripts do SQL como informado no arquivo ScriptsSQL.sql. Assim o banco será populado com sucesso.
-
 
 ## ☕ Usando <Desafio Técnico AZ Guidance>
 
@@ -51,6 +49,7 @@ Para executar a API navegue para a pasta "DesafioTecnicoAPI" e execute os comand
 
 <dotnet restore>
 ```
+
 e em seguida
 
 ```
