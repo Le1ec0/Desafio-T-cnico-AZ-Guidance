@@ -1,30 +1,45 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicionar serviços ao contêiner.
+// Add services to the container
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
-// Configurar conexão com o banco de dados (SQL Server)
+// Configure Swagger
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "PermissaoCliente API",
+        Description = "API to manage client permissions"
+    });
+});
+
+// Configure the database connection (SQL Server)
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Registrar o serviço PermissaoClienteService
+// Register the PermissaoClienteService
 builder.Services.AddScoped<PermissaoClienteService>();
 
 var app = builder.Build();
 
-// Configurar o pipeline de requisição HTTP.
+// Enable Swagger middleware for development only
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "PermissaoCliente API V1");
+        c.RoutePrefix = string.Empty; // Swagger will be at the root URL
+    });
 }
 
 app.UseHttpsRedirection();
 
-// Endpoint para obter informações de um cliente pelo ID.
+// Endpoint to get client permission by ID
 app.MapGet("/api/permissao_cliente/{id}", async (int id, PermissaoClienteService service) =>
 {
     var cliente = await service.GetClienteById(id);
@@ -37,7 +52,7 @@ app.MapGet("/api/permissao_cliente/{id}", async (int id, PermissaoClienteService
 .WithName("GetPermissaoCliente")
 .WithOpenApi();
 
-// Endpoint para atualizar informações de um cliente.
+// Endpoint to update client permission
 app.MapPut("/api/permissao_cliente/{id}", async (int id, PermissaoCliente permissaoCliente, PermissaoClienteService service) =>
 {
     if (id != permissaoCliente.ClienteID)
