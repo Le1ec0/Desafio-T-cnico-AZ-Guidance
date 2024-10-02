@@ -1,6 +1,6 @@
 .vscode/*
-./DesafioTecnicoAPI/bin/*
-./DesafioTecnicoAPI/obj/*
-./DesafioTecnicoBlazor/.vscode/*
-./DesafioTecnicoBlazor/bin/*
-./DesafioTecnicoBlazor/obj/*
+./DesafioTecnicoAPI/bin/
+./DesafioTecnicoAPI/obj/
+./DesafioTecnicoBlazor/.vscode/
+./DesafioTecnicoBlazor/bin/
+./DesafioTecnicoBlazor/obj/
